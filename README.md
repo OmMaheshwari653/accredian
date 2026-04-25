@@ -72,6 +72,7 @@ src/
 		HowItWorks.tsx
 		Nav.tsx
 		PublicHome.tsx
+        Reveal.tsx
 		Stats.tsx
 		Testimonials.tsx
 	lib/

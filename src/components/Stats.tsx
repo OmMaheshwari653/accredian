@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 const trackRecords = [
   {
     value: "10K+",
@@ -16,9 +18,9 @@ const trackRecords = [
 const Stats = () => {
   return (
     <div className="px-0 sm:px-16 flex justify-center items-start">
-      <div className="max-w-[85rem] w-full">
+      <div className="max-w-340 w-full">
         <section className="w-full overflow-hidden flex flex-col items-center mt-8 sm:mt-28 px-4 capitalize">
-          <div className="text-center mb-6 mx-2">
+          <Reveal direction="left" className="text-center mb-6 mx-2">
             <h2 className="text-2xl mx-1 sm:text-4xl font-bold text-gray-900 leading-tight">
               Our <span className="text-blue-600">Track Record</span>
             </h2>
@@ -26,9 +28,13 @@ const Stats = () => {
               The Numbers Behind{" "}
               <span className="text-blue-600">Our Success</span>
             </p>
-          </div>
+          </Reveal>
 
-          <div className="w-full flex justify-center p-4 text-center">
+          <Reveal
+            direction="right"
+            className="w-full flex justify-center p-4 text-center"
+            delay={0.08}
+          >
             <div className="hidden sm:flex justify-start p-4 gap-10 rounded-xl">
               {trackRecords.map((item, index) => (
                 <div
@@ -42,7 +48,7 @@ const Stats = () => {
                   <div className="text-2xl text-blue-600 font-semibold w-24 bg-blue-100 p-2 rounded-full">
                     <h2>{item.value}</h2>
                   </div>
-                  <p className="max-w-[300px]">{item.text}</p>
+                  <p className="max-w-75">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -57,14 +63,14 @@ const Stats = () => {
                       : "border-b-0"
                   }`}
                 >
-                  <div className="flex justify-center items-center text-blue-600 text-center font-semibold w-full max-w-[70px] bg-blue-100 p-2 rounded-full">
+                  <div className="flex justify-center items-center text-blue-600 text-center font-semibold w-full max-w-17.5 bg-blue-100 p-2 rounded-full">
                     <h2 className="text-md md:text-2xl">{item.value}</h2>
                   </div>
                   <p className="text-md md:text-2xl">{item.text}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </section>
       </div>
     </div>

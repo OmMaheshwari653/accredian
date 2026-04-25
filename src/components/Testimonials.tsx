@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ChevronRight, Headset } from "lucide-react";
 import { useState } from "react";
+import Reveal from "./Reveal";
 
 const testimonialItems = [
   {
@@ -30,17 +31,17 @@ const Testimonials = () => {
 
   return (
     <section className="testimonials w-full mt-16 sm:mt-20 flex flex-col items-center">
-      <div className="text-center mb-10 mx-2">
+      <Reveal direction="left" className="text-center mb-10 mx-2">
         <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 leading-tight">
           Testimonials from <span className="text-blue-600">Our Partners</span>
         </h2>
         <p className="text-sm sm:text-lg text-gray-700 mt-3">
           What <span className="text-blue-600">Our Clients</span> Are Saying
         </p>
-      </div>
+      </Reveal>
 
-      <div className="w-full px-4">
-        <div className="mx-auto max-w-[1300px] overflow-hidden">
+      <Reveal direction="right" className="w-full px-4" delay={0.06}>
+        <div className="mx-auto max-w-325 overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-out"
             style={{
@@ -49,7 +50,7 @@ const Testimonials = () => {
           >
             {testimonialItems.map((item) => (
               <div key={item.alt} className="w-full shrink-0 flex h-auto">
-                <div className="bg-white border border-gray-300 rounded-xl p-6 flex flex-row items-center w-full min-h-[250px] flex-grow">
+                <div className="bg-white border border-gray-300 rounded-xl p-6 flex flex-row items-center w-full min-h-62.5 grow">
                   <div className="w-full flex flex-col justify-start items-start sm:pl-6 h-full">
                     <div className="h-16 mb-4 flex items-center gap-4">
                       <Image
@@ -83,15 +84,19 @@ const Testimonials = () => {
             />
           ))}
         </div>
-      </div>
+      </Reveal>
 
       <div
         id="supportSection"
         className="cta flex justify-center w-full mt-16 sm:mt-24 xl:px-12 px-4"
       >
-        <div className="relative overflow-hidden border border-blue-600 w-full max-w-[85rem] py-8 md:py-16 md:px-12 px-6 bg-blue-600 rounded-xl flex items-center md:justify-between md:flex-row flex-col gap-6">
-          <div className="relative z-10 flex gap-8 md:flex-row flex-col md:items-start items-center">
-            <div className="w-20 h-20 flex-shrink-0 bg-slate-200/35 rounded-xl p-1">
+        <div className="relative overflow-hidden border border-blue-600 w-full max-w-340 py-8 md:py-16 md:px-12 px-6 bg-blue-600 rounded-xl flex items-center md:justify-between md:flex-row flex-col gap-6">
+          <Reveal
+            direction="left"
+            className="relative z-10 flex gap-8 md:flex-row flex-col md:items-start items-center"
+            amount={0.3}
+          >
+            <div className="w-20 h-20 shrink-0 bg-slate-200/35 rounded-xl p-1">
               <div className="w-full h-full bg-white rounded-xl p-2">
                 <Headset className="w-full h-full text-blue-600" />
               </div>
@@ -105,15 +110,17 @@ const Testimonials = () => {
                 Get Expert Guidance for Your Team&apos;s Success!
               </h4>
             </div>
-          </div>
+          </Reveal>
 
-          <button
-            type="button"
-            className="relative z-10 w-full max-w-[200px] py-2 sm:px-4 sm:py-3 mt-4 rounded-lg text-blue-500 bg-white text-xl font-semibold flex items-center justify-center gap-1"
-          >
-            Contact Us
-            <ChevronRight size={20} />
-          </button>
+          <Reveal direction="right" delay={0.08} amount={0.3}>
+            <button
+              type="button"
+              className="relative z-10 w-full max-w-50 py-2 sm:px-4 sm:py-3 mt-4 rounded-lg text-blue-500 bg-white text-xl font-semibold flex items-center justify-center gap-1"
+            >
+              Contact Us
+              <ChevronRight size={20} />
+            </button>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
+import Reveal from "./Reveal";
 
 type CategoryKey = "course" | "delivery" | "misc";
 
@@ -75,14 +76,18 @@ const FAQ = ({ onOpenEnquire }: FAQProps) => {
   return (
     <div className="w-full flex justify-center mt-16 sm:mt-16 md:py-12 xl:px-12 px-4">
       <div className="w-full max-w-340">
-        <div className="w-full">
+        <Reveal direction="left" className="w-full">
           <h2 className="text-2xl mx-1 md:text-4xl font-bold text-gray-900 leading-tight">
             Frequently Asked <span className="text-blue-600">Questions</span>
           </h2>
-        </div>
+        </Reveal>
 
         <div className="flex gap-4 mt-8 md:mt-12 md:flex-row flex-col">
-          <div className="w-full md:flex-[0.3] relative">
+          <Reveal
+            direction="left"
+            className="w-full md:flex-[0.3] relative"
+            delay={0.04}
+          >
             <div
               ref={tabStripRef}
               className="md:max-w-sm md:px-4 py-2 flex flex-row md:flex-col items-center gap-4 md:gap-6 max-w-[90vw] overflow-x-auto"
@@ -123,9 +128,13 @@ const FAQ = ({ onOpenEnquire }: FAQProps) => {
             >
               <ChevronRight size={18} />
             </button>
-          </div>
+          </Reveal>
 
-          <div className="w-full md:flex-[0.7] md:px-4 flex flex-col">
+          <Reveal
+            direction="right"
+            className="w-full md:flex-[0.7] md:px-4 flex flex-col"
+            delay={0.1}
+          >
             {activeFaqs.map((faq, index) => {
               const isOpen = openQuestion === index;
 
@@ -179,7 +188,7 @@ const FAQ = ({ onOpenEnquire }: FAQProps) => {
                 Enquire Now
               </button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </div>

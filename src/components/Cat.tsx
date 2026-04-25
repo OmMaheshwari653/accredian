@@ -1,9 +1,10 @@
 import CatAnimation from "./CatAnimation";
+import Reveal from "./Reveal";
 
 const Cat = () => {
   return (
     <section className="w-full mt-12 sm:mt-24 py-4 flex flex-col items-center second-bg-grad">
-      <div className="text-center mx-2">
+      <Reveal direction="left" className="text-center mx-2">
         <h2 className="text-2xl md:text-4xl font-bold text-gray-900 leading-tight">
           The <span className="text-blue-600">CAT Framework</span>
         </h2>
@@ -11,11 +12,15 @@ const Cat = () => {
           Our Proven Approach to
           <span className="text-blue-600"> Learning Excellence</span>
         </p>
-      </div>
+      </Reveal>
 
-      <div className="w-full flex justify-center mt-12 sm:mt-16">
+      <Reveal
+        direction="right"
+        className="w-full flex justify-center mt-12 sm:mt-16"
+        delay={0.08}
+      >
         <CatAnimation />
-      </div>
+      </Reveal>
     </section>
   );
 };

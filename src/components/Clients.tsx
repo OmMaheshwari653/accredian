@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 const clientLogos = [
   {
     src: "/rel.png",
@@ -34,8 +36,8 @@ const clientLogos = [
 const Clients = () => {
   return (
     <section className="mt-8 sm:mt-28 xl:px-12 px-4 text-center">
-      <div className="mx-auto w-full max-w-[85rem]">
-        <div className="text-center mx-2">
+      <div className="mx-auto w-full max-w-340">
+        <Reveal direction="left" className="text-center mx-2">
           <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 leading-tight">
             Our Proven <span className="text-blue-600">Partnerships</span>
           </h2>
@@ -43,9 +45,13 @@ const Clients = () => {
             Successful Collaborations With the
             <span className="text-blue-600"> Industry&apos;s Best</span>
           </p>
-        </div>
+        </Reveal>
 
-        <div className="w-full flex justify-center items-center mt-2">
+        <Reveal
+          direction="right"
+          className="w-full flex justify-center items-center mt-2"
+          delay={0.08}
+        >
           <ul className="hidden sm:grid grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-10">
             {clientLogos.map((logo) => (
               <li
@@ -77,7 +83,7 @@ const Clients = () => {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

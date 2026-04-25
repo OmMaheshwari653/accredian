@@ -1,4 +1,5 @@
 import { ChartNoAxesCombined, MonitorPlay, Presentation } from "lucide-react";
+import Reveal from "./Reveal";
 
 const steps = [
   {
@@ -25,7 +26,7 @@ const steps = [
 const HowItWorks = () => {
   return (
     <div className="mx-auto max-w-6xl">
-      <div className="text-center mb-10 mx-2">
+      <Reveal direction="left" className="text-center mb-10 mx-2">
         <h2 className="text-2xl mx-1 md:text-4xl font-bold text-gray-900 leading-tight">
           How We <span className="text-blue-600">Deliver Results</span> That
           Matter?
@@ -34,21 +35,23 @@ const HowItWorks = () => {
           A Structured Three-Step Approach to
           <span className="text-blue-600"> Skill Development</span>
         </p>
-      </div>
+      </Reveal>
 
       <div className="flex flex-wrap justify-center gap-8 px-4">
-        {steps.map((step) => {
+        {steps.map((step, index) => {
           const Icon = step.icon;
 
           return (
-            <div
+            <Reveal
               key={step.number}
+              direction={index % 2 === 0 ? "left" : "right"}
+              delay={index * 0.06}
               className="relative bg-blue-50 border border-blue-300 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center text-center max-w-[18rem] w-full"
             >
-              <div className="absolute left-[-4px] sm:left-[-8px] top-1/2 -translate-y-1/2 w-1 sm:w-2 h-12 sm:h-36 bg-blue-600 rounded-lg" />
-              <div className="absolute right-[-4px] sm:right-[-8px] top-1/2 -translate-y-1/2 w-1 sm:w-2 h-12 sm:h-36 bg-blue-600 rounded-lg" />
+              <div className="absolute -left-1 sm:-left-2 top-1/2 -translate-y-1/2 w-1 sm:w-2 h-12 sm:h-36 bg-blue-600 rounded-lg" />
+              <div className="absolute -right-1 sm:-right-2 top-1/2 -translate-y-1/2 w-1 sm:w-2 h-12 sm:h-36 bg-blue-600 rounded-lg" />
 
-              <div className="absolute left-[10px] top-6 -translate-y-1/2 w-6 h-6 border-blue-300 border-2 bg-white rounded-full flex justify-center items-center font-normal sm:font-bold text-center">
+              <div className="absolute left-2.5 top-6 -translate-y-1/2 w-6 h-6 border-blue-300 border-2 bg-white rounded-full flex justify-center items-center font-normal sm:font-bold text-center">
                 <p>{step.number}</p>
               </div>
 
@@ -62,7 +65,7 @@ const HowItWorks = () => {
               <p className="text-gray-600 hidden sm:block text-sm mt-2 max-w-[18rem]">
                 {step.description}
               </p>
-            </div>
+            </Reveal>
           );
         })}
       </div>
