@@ -20,20 +20,98 @@ const Nav = () => {
   const [activeHash, setActiveHash] = useState("#home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const getNavOffset = () => {
+    const nav = document.querySelector("nav");
+    return (nav?.clientHeight ?? 96) + 16;
+  };
+
+  const navigateToSection = (href: string, closeMobileMenu = false) => {
+    const target = document.querySelector(href) as HTMLElement | null;
+
+    if (!target) {
+      return;
+    }
+
+    const navOffset = getNavOffset();
+    const top = target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+    window.history.replaceState(null, "", href);
+    window.scrollTo({ top, behavior: "smooth" });
+    setActiveHash(href);
+
+    if (closeMobileMenu) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   useEffect(() => {
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash || "#home");
+    const sections = navItems
+      .map((item) => ({
+        href: item.href,
+        el: document.querySelector(item.href) as HTMLElement | null,
+      }))
+      .filter((item) => item.el !== null) as Array<{
+      href: string;
+      el: HTMLElement;
+    }>;
+
+    const updateActiveByPosition = () => {
+      const navOffset = getNavOffset();
+      const marker = navOffset + 24;
+      let currentHash = sections[0]?.href ?? "#home";
+
+      for (const section of sections) {
+        if (section.el.getBoundingClientRect().top <= marker) {
+          currentHash = section.href;
+        }
+      }
+
+      setActiveHash((prev) => (prev === currentHash ? prev : currentHash));
     };
 
-    window.addEventListener("hashchange", handleHashChange);
-    setActiveHash(window.location.hash || "#home");
+    const handleHashChange = () => {
+      const hash = window.location.hash || "#home";
+      setActiveHash(hash);
+    };
 
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length > 0) {
+          const id = `#${visible[0].target.id}`;
+          setActiveHash((prev) => (prev === id ? prev : id));
+        } else {
+          updateActiveByPosition();
+        }
+      },
+      {
+        root: null,
+        rootMargin: `-${getNavOffset()}px 0px -55% 0px`,
+        threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section.el));
+
+    updateActiveByPosition();
+    window.addEventListener("scroll", updateActiveByPosition, {
+      passive: true,
+    });
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateActiveByPosition);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white shadow-md py-6 px-6 md:px-14">
-      <div className="max-w-[85rem] mx-auto flex justify-between items-center">
+      <div className="max-w-340 mx-auto flex justify-between items-center">
         <div className="h-full items-center gap-1 flex">
           <Image
             src="/logo.webp"
@@ -58,7 +136,10 @@ const Nav = () => {
                         ? "text-blue-600 border-b-[3px] border-blue-600"
                         : "text-black hover:text-black"
                     }`}
-                    onClick={() => setActiveHash(item.href)}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      navigateToSection(item.href);
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -100,9 +181,9 @@ const Nav = () => {
                             ? "text-blue-600 font-semibold border-b-2 border-blue-600"
                             : "text-black"
                         }`}
-                        onClick={() => {
-                          setActiveHash(item.href);
-                          setIsMobileMenuOpen(false);
+                        onClick={(event) => {
+                          event.preventDefault();
+                          navigateToSection(item.href, true);
                         }}
                       >
                         {item.label}
