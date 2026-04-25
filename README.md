@@ -4,7 +4,7 @@
 
 - **Assignment**: Accredian Full Stack Developer Intern Assignment
 - **Submitted by**: Om Maheshwari
-- **Resume**: _[Add resume link here]_
+- **Resume**: https://drive.google.com/file/d/1lLlzBzA4aHc1xKHSxHeU-9x1Yom4ZRcm/view?usp=sharing
 
 ---
 
