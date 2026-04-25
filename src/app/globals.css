@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .shadow-card {
+    box-shadow: 0 12px 30px rgba(2, 6, 23, 0.14);
+  }
+
+  .animate-marquee {
+    animation: marquee 14s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
