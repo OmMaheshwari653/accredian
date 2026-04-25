@@ -12,13 +12,9 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
+import EdgeAnimation from "./EdgeAnimation";
 
 const AccredianEdge = () => {
-  const desktopImage =
-    "https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/accredian-edge-usp-v3.svg";
-  const mobileImage =
-    "https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/accredian-edge-usp-mobile.svg";
-
   const expertiseCards = [
     { title: "Product & Innovation Hub", icon: Lightbulb },
     { title: "Gen-AI Mastery", icon: Brain },
@@ -88,37 +84,7 @@ const AccredianEdge = () => {
 
   return (
     <>
-      <section className="mt-12 px-4 md:px-8 xl:px-12">
-        <div className="text-center pb-8 mx-2">
-          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 leading-tight">
-            The <span className="text-blue-600">Accredian Edge</span>
-          </h2>
-          <p className="text-sm sm:text-lg text-gray-700 mt-3 m-auto mx-1">
-            Key Aspects of
-            <span className="text-blue-600"> Our Strategic Training</span>
-          </p>
-        </div>
-
-        <div className="w-full hidden sm:flex justify-center items-center mb-8">
-          <Image
-            src={desktopImage}
-            alt="Our Solutions"
-            width={1200}
-            height={520}
-            className="w-full h-auto rounded-lg"
-          />
-        </div>
-
-        <div className="flex sm:hidden w-full justify-center items-center mb-8">
-          <Image
-            src={mobileImage}
-            alt="Our Solutions"
-            width={720}
-            height={900}
-            className="w-full h-auto rounded-lg"
-          />
-        </div>
-      </section>
+      <EdgeAnimation />
 
       <section className="mt-12 sm:mt-24 mb-4">
         <div className="max-w-6xl mx-auto px-4">

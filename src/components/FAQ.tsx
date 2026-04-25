@@ -56,7 +56,11 @@ const faqData: Record<CategoryKey, FaqItem[]> = {
   ],
 };
 
-const FAQ = () => {
+type FAQProps = {
+  onOpenEnquire: () => void;
+};
+
+const FAQ = ({ onOpenEnquire }: FAQProps) => {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("course");
   const [openQuestion, setOpenQuestion] = useState(0);
   const tabStripRef = useRef<HTMLDivElement>(null);
@@ -70,7 +74,7 @@ const FAQ = () => {
 
   return (
     <div className="w-full flex justify-center mt-16 sm:mt-16 md:py-12 xl:px-12 px-4">
-      <div className="w-full max-w-[85rem]">
+      <div className="w-full max-w-340">
         <div className="w-full">
           <h2 className="text-2xl mx-1 md:text-4xl font-bold text-gray-900 leading-tight">
             Frequently Asked <span className="text-blue-600">Questions</span>
@@ -91,7 +95,7 @@ const FAQ = () => {
                     key={category.key}
                     type="button"
                     onClick={() => handleCategoryChange(category.key)}
-                    className={`w-full max-w-[280px] rounded-md px-4 py-4 text-center cursor-pointer border-2 ${
+                    className={`w-full max-w-70 rounded-md px-4 py-4 text-center cursor-pointer border-2 ${
                       isActive
                         ? "drop-shadow-lg md:drop-shadow-xl bg-white border-blue-100"
                         : "border-neutral-300 bg-white"
@@ -167,7 +171,11 @@ const FAQ = () => {
             })}
 
             <div className="flex justify-center mt-6">
-              <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md transition duration-300 hover:bg-blue-700">
+              <button
+                type="button"
+                onClick={onOpenEnquire}
+                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md transition duration-300 hover:bg-blue-700"
+              >
                 Enquire Now
               </button>
             </div>

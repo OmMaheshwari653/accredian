@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Accredian Assignment Submission
 
-## Getting Started
+## Assignment Details
 
-First, run the development server:
+- **Assignment**: Accredian Full Stack Developer Intern Assignment
+- **Submitted by**: Om Maheshwari
+- **Resume**: _[Add resume link here]_
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-repository-url>
+cd accredian
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create or update `.env` in the project root:
+
+```env
+MONGO_URI=your_mongodb_connection_string_here
+```
+
+### 4. Run the Project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Requirements
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js (recommended: Node 20+)
+- npm (comes with Node.js)
+- MongoDB connection string (for form backend storage)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Approach Taken
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Source Folder Structure (`src` only)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+src/
+	app/
+		api/
+			enquire/
+				route.ts
+		globals.css
+		layout.tsx
+		page.tsx
+	components/
+		AccredianEdge.tsx
+		Cat.tsx
+		CatAnimation.tsx
+		Clients.tsx
+		EnquireForm.tsx
+		FAQ.tsx
+		Footer.tsx
+		Hero.tsx
+		HowItWorks.tsx
+		Nav.tsx
+		PublicHome.tsx
+		Stats.tsx
+		Testimonials.tsx
+	lib/
+		mongo.ts
+```
 
-## Deploy on Vercel
+### Component and Architecture Approach
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Built the page using reusable section components such as Hero, FAQ, CAT, and Testimonials.
+- Kept components focused and readable, so each file handles a clear UI responsibility.
+- Centralized the Enquire dialog flow so both Hero and FAQ can trigger the same modal.
+- Added a dedicated backend API route for enquiry submission and a shared Mongo connection utility in `src/lib`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## AI Usage Explanation
+
+- **GitHub Copilot** was used for debugging and iteration.
+- After creating the initial component structure, Copilot was used to refine CSS layout issues, spacing, and flex behavior.
+- Prompt-driven iterations were used to adjust component structure and responsive alignment faster.
+- **Claude** was used with screenshots to get implementation ideas for certain components.
+- Claude also helped with a basic starting structure in some places, which was then manually customized.
+- Major manual refinements were done in SVG paths, visual tuning, and animation behavior.
+
+---
+
+## Improvements With More Time
+
+- Improve SVG path quality and polish advanced CSS for higher visual precision.
+- Invest more time in frontend depth and advanced UI craft.
+- Redesign components to a more refined level with AI-assisted exploration plus stronger manual finishing.
+
+---
+
+## Backend and Routes Implemented
+
+- Implemented form backend handling for enquiries.
+- Added API route: `src/app/api/enquire/route.ts`.
+- Added MongoDB connection layer: `src/lib/mongo.ts`.
+- Wired the Enquire form to submit data to backend storage.

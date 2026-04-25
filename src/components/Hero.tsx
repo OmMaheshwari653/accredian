@@ -8,10 +8,14 @@ const heroPoints = [
   "Measurable Impact",
 ];
 
-const Hero = () => {
+type HeroProps = {
+  onOpenEnquire: () => void;
+};
+
+const Hero = ({ onOpenEnquire }: HeroProps) => {
   return (
     <div className="flex w-full justify-center items-start">
-      <div className="mx-auto w-full max-w-[85rem]">
+      <div className="mx-auto w-full max-w-340">
         <div className="flex justify-center items-center my-4 mt-20 sm:mt-32 xl:px-12 sm:px-4 mb-10 md:mb-0">
           <div className="rounded-lg md:rounded-3xl bg-blue-50 flex flex-col-reverse sm:flex-row items-center justify-center sm:justify-between sm:gap-4 md:gap-8 lg:gap-12 shadow-card overflow-visible">
             <div className="flex w-full flex-col justify-between gap-4 p-4 sm:ml-7 sm:w-1/2 sm:gap-4 sm:p-0 md:gap-8 md:ps-2 lg:gap-10 lg:ps-8">
@@ -40,7 +44,11 @@ const Hero = () => {
               </ul>
 
               <div className="mb-6 flex justify-center sm:mb-0 sm:justify-start">
-                <button className="w-[80%] rounded-lg bg-blue-600 p-1.75 text-md font-normal text-white shadow-md sm:w-42.5">
+                <button
+                  type="button"
+                  onClick={onOpenEnquire}
+                  className="w-[80%] rounded-lg bg-blue-600 p-1.75 text-md font-normal text-white shadow-md sm:w-42.5"
+                >
                   <p className="text-sm md:text-xl">Enquire Now</p>
                 </button>
               </div>

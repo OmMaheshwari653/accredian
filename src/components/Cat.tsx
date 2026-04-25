@@ -1,9 +1,6 @@
-import Image from "next/image";
+import CatAnimation from "./CatAnimation";
 
 const Cat = () => {
-  const catImage =
-    "https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/catV2.svg";
-
   return (
     <section className="w-full mt-12 sm:mt-24 py-4 flex flex-col items-center second-bg-grad">
       <div className="text-center mx-2">
@@ -16,14 +13,8 @@ const Cat = () => {
         </p>
       </div>
 
-      <div className="w-full flex justify-center mt-16">
-        <Image
-          src={catImage}
-          alt="Our Solutions"
-          width={1100}
-          height={520}
-          className="w-[90%] sm:w-[70%] h-auto rounded-lg"
-        />
+      <div className="w-full flex justify-center mt-12 sm:mt-16">
+        <CatAnimation />
       </div>
     </section>
   );
